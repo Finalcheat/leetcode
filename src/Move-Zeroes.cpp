@@ -1,6 +1,6 @@
 /**
  * @file Move-Zeroes.cpp
- * @brief 将0移动到数组后面 
+ * @brief 将0移动到数组后面(https://leetcode.com/problems/move-zeroes/) 
  * @author Finalcheat
  * @date 2016-03-07
  */

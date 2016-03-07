@@ -1,6 +1,6 @@
 /**
  * @file Same-Tree.cpp
- * @brief 判断二叉树是否相同
+ * @brief 判断二叉树是否相同(https://leetcode.com/problems/same-tree/)
  * @author Finalcheat
  * @date 2016-03-07
  */
