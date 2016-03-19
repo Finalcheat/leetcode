@@ -1,6 +1,6 @@
 /**
  * @file Length-of-Last-Word.cpp
- * @brief 最后单词的长度
+ * @brief 最后单词的长度(https://leetcode.com/problems/length-of-last-word/)
  * @author Finalcheat
  * @date 2016-03-19
  */
