@@ -14,6 +14,10 @@
  * return 5.
  */
 
+/**
+ * 求最后一个单词的长度，用两个指针从字符串尾部开始遍历，找到单词的开始和结束位置，相减即可得到字符串长度。
+ */
+
 class Solution {
     public:
         int lengthOfLastWord(string s) {
