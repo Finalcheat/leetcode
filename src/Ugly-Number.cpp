@@ -11,6 +11,10 @@
  * Note that 1 is typically treated as an ugly number.
  */
 
+/**
+ * 丑陋数的定义是因子只有1、2、3、5，所以判断一个数是否是丑陋数只需要不断除以这些数即可。
+ */
+
 class Solution {
     public:
         bool isUgly(int num) {
