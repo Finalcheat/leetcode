@@ -1,6 +1,6 @@
 /**
  * @file Sort-Characters-By-Frequency.cpp
- * @brief 按照出现的频次排序字符(https://leetcode.com/problems/sort-characters-by-frequency)
+ * @brief 按照字符出现的频次排序字符串(https://leetcode.com/problems/sort-characters-by-frequency)
  * @author Finalcheat
  * @date 2017-02-28
  */
