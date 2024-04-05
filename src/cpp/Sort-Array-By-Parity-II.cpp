@@ -16,10 +16,16 @@
  */
 
 /**
+ * 解法1:
  * 把奇偶数分离出去按位置摆放即可。
+ * 解法2:
+ * 双指针遍历交换
  */
 
 
+/**
+ * 解法1
+ */
 class Solution {
     public:
         vector<int> sortArrayByParityII(vector<int>& A) {
@@ -44,5 +50,51 @@ class Solution {
                 }
             }
             return result;
+        }
+};
+
+
+/**
+ * 解法2
+ */
+class Solution {
+    public:
+        vector<int> sortArrayByParityII(vector<int>& nums) {
+            if (nums.empty()) {
+                return nums;
+            }
+            int first = 0;
+            int last = nums.size() - 1;
+            while (first < last) {
+                while (first < last && (isOdd(nums[first], first) || isEven(nums[first], first))) {
+                    ++first;
+                }
+                if (first >= last) {
+                    break;
+                }
+                if (first % 2 == 0) {
+                    int last_i = last;
+                    while (first < last_i && (nums[last_i] % 2 != 0)) {
+                        --last_i;
+                    }
+                    std::swap(nums[first], nums[last_i]);
+                    ++first;
+                } else {
+                    int last_ii = last;
+                    while (first < last_ii && (nums[last_ii] % 2 == 0)) {
+                        --last_ii;
+                    }
+                    std::swap(nums[first], nums[last_ii]);
+                    ++first;
+                }
+            }
+            return nums;
+        }
+    private:
+        bool isOdd(const int num, const int idx) {
+            return (num % 2 != 0) && (idx % 2 != 0);
+        }
+        bool isEven(const int num, const int idx) {
+            return (num % 2 == 0) && (idx % 2 == 0);
         }
 };
