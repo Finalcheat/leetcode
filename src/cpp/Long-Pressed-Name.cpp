@@ -3,6 +3,7 @@
  * @brief 长按键入(https://leetcode.com/problems/long-pressed-name)
  * @author Finalcheat
  * @date 2018-12-03
+ * @update 2024-04-12
  */
 
 /**
@@ -26,70 +27,35 @@
  */
 
 /**
- * 记录字符连续出现次数，最后对比即可。
+ * 双指针，比较当前双指针字符，不想等直接返回false，否则双指针继续前进，前进过程中统计重复出现的字符个数，name的个数必须小于等于typed的个数，否则返回false，最后判断双指针是否同时走到字符串终点。
  */
 
 
 class Solution {
     public:
         bool isLongPressedName(string name, string typed) {
-            if (name.size() > typed.size()) {
-                return false;
-            }
-            if (name.empty()) {
-                return false;
-            }
-            char last = name[0];
-            size_t count = 1;
-            vector<PressedName> nameVector;
-            for (size_t i = 0; i < name.size(); ++i) {
-                const char c = name[i];
-                if (c == last) {
-                    ++count;
-                } else {
-                    nameVector.push_back(PressedName(last, count));
-                    last = c;
-                    count = 1;
-                }
-            }
-            nameVector.push_back(PressedName(last, count));
-
-            last = typed[0];
-            count = 1;
-            vector<PressedName> typedVector;
-            for (size_t i = 0; i < typed.size(); ++i) {
-                const char c = typed[i];
-                if (c == last) {
-                    ++count;
-                } else {
-                    typedVector.push_back(PressedName(last, count));
-                    last = c;
-                    count = 1;
-                }
-            }
-            typedVector.push_back(PressedName(last, count));
-
-            if (nameVector.size() != typedVector.size()) {
-                return false;
-            }
-            for (size_t i = 0; i < nameVector.size(); ++i) {
-                const char nameChar = nameVector[i].c;
-                const char typedChar = typedVector[i].c;
-                if (nameChar != typedChar) {
+            int nameIdx = 0;
+            int typedIdx = 0;
+            while (nameIdx < name.size() && typedIdx < typed.size()) {
+                if (name[nameIdx] != typed[typedIdx]) {
                     return false;
                 }
-                const size_t nameCharCount = nameVector[i].count;
-                const size_t typedCharCount = typedVector[i].count;
-                if (nameCharCount > typedCharCount) {
+                ++nameIdx;
+                ++typedIdx;
+                int nameCnt = 1;
+                while (nameIdx < name.size() && name[nameIdx] == name[nameIdx - 1]) {
+                    ++nameIdx;
+                    ++nameCnt;
+                }
+                int typedCnt = 1;
+                while (typedIdx < typed.size() && typed[typedIdx] == typed[typedIdx - 1]) {
+                    ++typedIdx;
+                    ++typedCnt;
+                }
+                if (nameCnt > typedCnt) {
                     return false;
                 }
             }
-            return true;
+            return nameIdx == name.size() && typedIdx == typed.size();
         }
-    private:
-        struct PressedName {
-            PressedName(const char _c, const size_t _count) : c(_c), count(_count) {}
-            char c;
-            size_t count;
-        };
 };
